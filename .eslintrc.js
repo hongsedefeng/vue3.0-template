@@ -266,10 +266,10 @@ module.exports = {
     "no-useless-computed-key": 2, // 禁止在对象中使用不必要的计算属性
     "no-useless-constructor": 2, //  禁用不必要的构造函数
     "prefer-const": 2, // 要求使用 const 声明那些声明后不再被修改的变量
-    "sort-imports": [
-      2,
-      { memberSyntaxSortOrder: ["single", "all", "multiple", "none"] }
-    ], // 强制模块内的 import 排序
+    // "sort-imports": [
+    //   2,
+    //   { memberSyntaxSortOrder: ["single", "all", "multiple", "none"] }
+    // ], // 强制模块内的 import 排序
     "template-curly-spacing": [2, "never"], //要求或禁止模板字符串中的嵌入表达式周围空格的使用
     "yield-star-spacing": [2, "both"] //  	强制在 yield* 表达式中 * 周围使用空格
   },
