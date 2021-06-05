@@ -1,5 +1,6 @@
 # vue3.0cli
 
+// axios ui库 echarts  
 ## Project setup
 ```
 npm install
