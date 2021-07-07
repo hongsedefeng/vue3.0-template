@@ -3,23 +3,24 @@ module.exports = {
   env: {
     node: true
   },
-  extends: ["plugin:vue/vue3-essential","eslint:recommended", "@vue/prettier"],
+  extends: ["plugin:vue/vue3-essential", "eslint:recommended", "@vue/prettier"],
   parserOptions: {
     parser: "babel-eslint",
-    sourceType: 'module'
+    sourceType: "module"
   },
   rules: {
+    "prettier/prettier": "error",
+    // 0 不使用；1使用并警告；2使用并终止运行
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    /****
+    /** **
      * 规则与 JavaScript 代码中可能的错误或逻辑错误有关
      *
      **/
-
     "no-control-regex": 0, // 禁止在正则表达式中使用控制字符
     "no-dupe-args": 2, //  	禁止 function 定义中出现重名参数
     "no-dupe-keys": 2, //  	禁止对象字面量中出现重复的 key
-    "no-duplicate-case": 2, //禁止出现重复的 case 标签
+    "no-duplicate-case": 2, // 禁止出现重复的 case 标签
     "no-empty-character-class": 2, // 	禁止在正则表达式中使用空字符集
     "no-ex-assign": 2, // 禁止对 catch 子句的参数重新赋值
     "no-extra-boolean-cast": 2, // 禁止不必要的布尔转换
@@ -57,21 +58,18 @@ module.exports = {
     "no-multi-spaces": 2, // 禁止使用多个空格
     "no-multi-str": 2, // 禁止使用多行字符串
     "no-new-object": 2, // 禁止使用 new 以避免产生副作用
-    "no-new-require": 2,
-    "no-new-symbol": 2,
-    "no-new-wrappers": 2,
     "no-new-wrappers": 2, // 禁止对 String，Number 和 Boolean 使用 new 操作符
     "no-octal": 2, //  	禁用八进制字面量
     "no-octal-escape": 2, // 禁止在字符串中使用八进制转义序列
-    "no-proto": 2, //禁用 __proto__ 属性
+    "no-proto": 2, // 禁用 __proto__ 属性
     "no-redeclare": 2, // 禁止多次声明同一变量
-    "no-return-assign": [2, "except-parens"], //禁止在 return 语句中使用赋值语句
+    "no-return-assign": [2, "except-parens"], // 禁止在 return 语句中使用赋值语句
     "no-self-assign": 2, // 禁止自我赋值
     "no-self-compare": 2, // 禁止自身比较
     "no-sequences": 2, // 禁用逗号操作符
     "no-throw-literal": 2, // 禁止抛出异常字面量
     "no-unmodified-loop-condition": 2, // 禁用一成不变的循环条件
-    "no-useless-call": 2, //禁止不必要的 .call() 和 .apply()
+    "no-useless-call": 2, // 禁止不必要的 .call() 和 .apply()
     "no-useless-escape": 0, // 禁用不必要的转义字符
     "no-with": 2, // 禁用 with 语句
     "wrap-iife": [2, "any"], //  	要求 IIFE 使用括号括起来
@@ -80,11 +78,12 @@ module.exports = {
     /*
      * 规则与变量声明有关
      **/
-    "no-delete-var": 2, //禁止删除变量
+    "linebreak-style": 0,
+    "no-delete-var": 2, // 禁止删除变量
     "no-label-var": 2, // 不允许标签与变量同名
     "no-shadow-restricted-names": 2, // 禁止将标识符定义为受限的名字
     "no-undef": 2, // 禁用未声明的变量，除非它们在 global 注释中被提到
-    "no-undef-init": 2, //禁止将变量初始化为 undefined
+    "no-undef-init": 2, // 禁止将变量初始化为 undefined
     "no-unused-vars": [
       2,
       {
@@ -92,7 +91,10 @@ module.exports = {
         args: "none"
       }
     ], // 禁止出现未使用过的变量
-
+    "no-unused-vars": [
+      2,
+      { vars: "local", args: "after-used", ignoreRestSiblings: false }
+    ], // 消除未使用的变量、函数和函数参数
     /**
      *
      * 规则是关于Node.js 或 在浏览器中使用CommonJS 的
@@ -101,7 +103,7 @@ module.exports = {
     "no-new-require": 2, // 禁止调用 require 时使用 new 操作符
     "no-path-concat": 2, // 禁止对 __dirname 和 __filename 进行字符串连接
 
-    /***
+    /** *
      *  规则是关于风格指南的，而且是非常主观的
      *
      */
@@ -113,7 +115,7 @@ module.exports = {
       {
         allowSingleLine: true
       }
-    ], //强制在代码块中使用一致的大括号风格
+    ], // 强制在代码块中使用一致的大括号风格
 
     camelcase: [
       0,
@@ -121,7 +123,7 @@ module.exports = {
         properties: "always"
       }
     ], // 强制使用骆驼拼写法命名约定
-    // "comma-dangle": [2, "never"], // 要求或禁止末尾逗号
+    "comma-dangle": [2, "never"], // 要求或禁止末尾逗号
     "comma-spacing": [
       2,
       {
@@ -138,7 +140,7 @@ module.exports = {
         SwitchCase: 1
       }
     ], // 强制使用一致的缩进
-    "jsx-quotes": [2, "prefer-single"], //强制在 JSX 属性中一致地使用双引号或单引号
+    "jsx-quotes": [2, "prefer-single"], // 强制在 JSX 属性中一致地使用双引号或单引号
     "key-spacing": [
       2,
       {
@@ -160,7 +162,7 @@ module.exports = {
         newIsCap: true,
         capIsNew: false
       }
-    ], //要求构造函数首字母大写
+    ], // 要求构造函数首字母大写
     "new-parens": 2, // 强制或禁止调用无参构造函数时有圆括号
     "no-mixed-spaces-and-tabs": 2, // 禁止空格和 tab 的混合缩进
     "no-multiple-empty-lines": [
@@ -169,7 +171,6 @@ module.exports = {
         max: 1
       }
     ], // 禁止出现多行空行
-    "no-new-object": 2, //  	禁用 Object 的构造函数
     "no-trailing-spaces": 2, // 禁用行尾空格
     "no-unneeded-ternary": [
       2,
@@ -200,9 +201,9 @@ module.exports = {
         avoidEscape: true,
         allowTemplateLiterals: true
       }
-    ], //强制使用一致的反勾号、双引号或单引号
+    ], // 强制使用一致的反勾号、双引号或单引号
 
-    // semi: [2, "never"], //要求或禁止使用分号代替 ASI
+    semi: [2, "always"], //要求或禁止使用分号代替 ASI
     "semi-spacing": [
       2,
       {
@@ -210,7 +211,7 @@ module.exports = {
         after: true
       }
     ], // 强制分号之前和之后使用一致的空格
-
+    "no-extra-semi": "error", // 禁用不必要的分号。
     "space-before-blocks": [2, "always"], // 强制在块之前使用一致的空格
     "space-before-function-paren": [2, "never"], //  	强制在 function的左括号之前使用一致的空格
     "space-in-parens": [2, "never"], // 强制在圆括号内使用一致的空格
@@ -238,7 +239,7 @@ module.exports = {
       }
     ], // 强制在注释中 // 或 /* 使用一致的空格
 
-    /***
+    /** *
      *
      *
      * 规则只与 ES6 有关, 即通常所说的 ES2015
@@ -249,7 +250,7 @@ module.exports = {
         before: true,
         after: true
       }
-    ], //强制箭头函数的箭头前后使用一致的空格
+    ], // 强制箭头函数的箭头前后使用一致的空格
     "constructor-super": 2, // 要求在构造函数中有 super() 的调用
     "generator-star-spacing": [
       2,
@@ -257,7 +258,7 @@ module.exports = {
         before: true,
         after: true
       }
-    ], //强制 generator 函数中 * 号周围使用一致的空格
+    ], // 强制 generator 函数中 * 号周围使用一致的空格
     "no-class-assign": 2, // 禁止修改类声明的变量
     "no-const-assign": 2, // 禁止修改 const 声明的变量
     "no-dupe-class-members": 2, // 禁止类成员中出现重复的名称
@@ -270,7 +271,7 @@ module.exports = {
     //   2,
     //   { memberSyntaxSortOrder: ["single", "all", "multiple", "none"] }
     // ], // 强制模块内的 import 排序
-    "template-curly-spacing": [2, "never"], //要求或禁止模板字符串中的嵌入表达式周围空格的使用
+    "template-curly-spacing": [2, "never"], // 要求或禁止模板字符串中的嵌入表达式周围空格的使用
     "yield-star-spacing": [2, "both"] //  	强制在 yield* 表达式中 * 周围使用空格
   },
 
@@ -285,4 +286,4 @@ module.exports = {
       }
     }
   ]
-}
+};
