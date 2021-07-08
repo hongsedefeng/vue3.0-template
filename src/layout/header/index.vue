@@ -1,4 +1,4 @@
-<template>header</template>
+<template>header...</template>
 
 <script>
 export default {};
