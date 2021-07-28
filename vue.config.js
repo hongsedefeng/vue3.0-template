@@ -27,49 +27,44 @@ module.exports = {
           parallel: true
         }),
         new WebpackBundleAnalyzerPlugin(), // webpack 资源大小查看
+        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn$/),
         new CompressionPlugin({
           compressionOptions: { level: 9 },
           threshold: 10240, // 压缩超出10240字节大小
           algorithm: "gzip",
-          deleteOriginalAssets: false // 是否删除源文件
+          deleteOriginalAssets: true // 是否删除源文件
         })
       );
       config.optimization = {
         splitChunks: {
+          chunks: "all",
           cacheGroups: {
-            common: {
-              name: "chunk-common",
-              chunks: "initial",
-              minChunks: 1,
-              maxInitialRequests: 5,
-              minSize: 0,
-              priority: 1,
-              reuseExistingChunk: true,
-              enforce: true
+            vue: {
+              name: "vue",
+              test: /[\\/]node_modules[\\/]vue[\\/]/,
+              priority: -10
+            },
+            vuex: {
+              name: "vuex",
+              test: /[\\/]node_modules[\\/]vuex[\\/]/,
+              priority: -10
+            },
+            "vue-router": {
+              name: "vue-router",
+              test: /[\\/]node_modules[\\/]vue-router[\\/]/,
+              priority: -10
             },
             vendors: {
-              name: "chunk-vendors",
+              name: "vendors",
               test: /[\\/]node_modules[\\/]/,
-              chunks: "initial",
-              priority: 2,
-              reuseExistingChunk: true,
-              enforce: true
-            },
-            antd: {
-              name: "chunk-ant-design-vue",
-              test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/,
-              chunks: "all",
-              priority: 3,
-              reuseExistingChunk: true,
-              enforce: true
-            },
-            elementUI: {
-              name: "chunk-elementUI-plus",
-              priority: 4,
-              chunks: "all",
-              test: /[\\/]node_modules[\\/]_?element-plus(.*)/,
-              enforce: true
+              priority: -20
             }
+            // "ant-design-vue": {
+            //   name: "ant-design-vue",
+            //   test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/,
+            //   reuseExistingChunk: true,
+            //   enforce: true
+            // }
           }
         }
       };
@@ -81,8 +76,10 @@ module.exports = {
       .use(
         new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn$/)
       );
-    // config.plugin("loadshReplace").use(new LodashModuleReplacementPlugin());
     config.resolve.alias.set("@", resolve("src"));
+    // 删除预加载
+    config.plugins.delete("preload");
+    config.plugins.delete("prefetch");
   },
   css: {
     // modules: false,
